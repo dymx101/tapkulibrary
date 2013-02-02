@@ -38,6 +38,8 @@
 
 - (id) init{
 	self = [self initWithFrame:CGRectZero];	
+    [self setIsAccessibilityElement:YES];
+    [self setColor:[UIColor whiteColor]];
 	return self;
 }
 - (id) initWithFrame:(CGRect)frame {
@@ -50,7 +52,8 @@
 	_progress = 0;
 	_displayProgress = 0;
 	_twirlMode = NO;
-	
+    [self setIsAccessibilityElement:YES];
+	[self setColor:[UIColor whiteColor]];
 	return self;
 }
 - (void) drawRect:(CGRect)rect {
@@ -59,13 +62,13 @@
 	
 	CGRect r = CGRectInset(rect, 4, 4);
 	
-	CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
+    CGContextSetStrokeColorWithColor(context, [self.color CGColor]);
     CGContextSetLineWidth(context, 3.0);
     CGContextAddEllipseInRect(context, r);
 	CGContextStrokePath(context);
 	
 	
-	CGContextSetRGBFillColor(context,1,1,1,1);
+    CGContextSetFillColorWithColor(context, [self.color CGColor]);
 	
 
 	
@@ -119,6 +122,10 @@
 	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateTwirl) object:nil];
 	[self performSelector:@selector(updateTwirl) withObject:nil afterDelay:AnimationTimer];
 	
+}
+
+-(BOOL)isAccessibilityElement{
+    return YES;
 }
 
 

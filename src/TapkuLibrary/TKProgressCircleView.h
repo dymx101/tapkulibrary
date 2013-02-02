@@ -46,6 +46,8 @@
 /** Have the progress circle twirl instead of displaying the current progress. */
 @property (assign,nonatomic,getter=isTwirling) BOOL twirlMode;
 
+@property (strong,nonatomic) UIColor * color;
+
 /** Set the progress with the circle animating to the progress.
  @param progress The current progress.
  @param animated Flag to animate to the current progress.
